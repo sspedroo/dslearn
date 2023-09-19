@@ -1,41 +1,39 @@
-package com.devsuperior.dslearn.domain.course.model;
+package com.devsuperior.dslearn.domain.offer.model;
 
-import com.devsuperior.dslearn.domain.offer.model.Offer;
+import com.devsuperior.dslearn.domain.course.model.Course;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 import java.util.Objects;
 
-@Entity(name = "tb_course")
-@Table(name = "tb_course")
-@AllArgsConstructor
+@Entity(name = "tb_offer")
+@Table(name = "tb_offer")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class Course {
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @Lob
-    private String imgUri;
-    @Lob
-    private String imgGrayUri;
+    private String edition;
+    private Instant startMoment;
+    private Instant endMoment;
 
-    @OneToMany(mappedBy = "course")
-    private List<Offer> offers = new ArrayList<>();
+    @ManyToOne()
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Course course = (Course) o;
-        return Objects.equals(id, course.id);
+        Offer offer = (Offer) o;
+        return Objects.equals(id, offer.id);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.devsuperior.dslearn.domain.user.model;
 
+import com.devsuperior.dslearn.domain.notification.model.Notification;
 import com.devsuperior.dslearn.domain.role.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +20,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,6 +32,10 @@ public class User {
     joinColumns = @JoinColumn(name = "user_id"), // indica que a coluna "user_id" da tabela de junção será usada como chave estrangeira para a entidade User.
     inverseJoinColumns = @JoinColumn(name = "role_id")) // indica que a coluna "role_id" da tabela de junção será usada como chave estrangeira para a entidade Role.
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToOne()
+    @JoinColumn(name = "notification_id")
+    private Notification notifications;
 
     @Override
     public boolean equals(Object o) {
