@@ -1,25 +1,21 @@
-package com.devsuperior.dslearn.domain.resource.model;
+package com.devsuperior.dslearn.domain.section.model;
 
-import com.devsuperior.dslearn.domain.offer.model.Offer;
-import com.devsuperior.dslearn.domain.resource.enums.ResourceType;
-import com.devsuperior.dslearn.domain.section.model.Section;
+import com.devsuperior.dslearn.domain.resource.model.Resource;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "tb_resource")
-@Table(name = "tb_resource")
+@Entity(name = "tb_section")
+@Table(name = "tb_section")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Resource {
+public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,22 +25,21 @@ public class Resource {
     private Integer position;
     @Lob
     private String imgUri;
-    private ResourceType type;
-    private String externalLink;
-
-    @OneToMany(mappedBy = "resource")
-    private List<Section> sections = new ArrayList<>();
 
     @ManyToOne()
-    @JoinColumn(name = "offer_id")
-    private Offer offer;
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
+
+    @ManyToOne()
+    @JoinColumn(name = "prerequisite_id")
+    private Section prerequisite;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Resource resource = (Resource) o;
-        return Objects.equals(id, resource.id);
+        Section section = (Section) o;
+        return Objects.equals(id, section.id);
     }
 
     @Override
