@@ -24,3 +24,6 @@ INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id) 
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capitulo 1', 'Aprendendo sintaxe', 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPS5yCpFtGPAhMHEqLStD_exgvle303WPoOszXkqr_U88dL9wVGC2KmUusfUZC7r2YnZo&usqp=CAU', 1, null);
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capitulo 2', 'Aprendendo POO', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPS5yCpFtGPAhMHEqLStD_exgvle303WPoOszXkqr_U88dL9wVGC2KmUusfUZC7r2YnZo&usqp=CAU', 1, 1);
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ('Capitulo 3', 'Aprendendo Collections', 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPS5yCpFtGPAhMHEqLStD_exgvle303WPoOszXkqr_U88dL9wVGC2KmUusfUZC7r2YnZo&usqp=CAU', 1, 2);
+
+INSERT INTO tb_enrollment (user_id, offer_id,enroll_Moment, refund_Moment, available, only_Update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2023-11-20T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (user_id, offer_id,enroll_Moment, refund_Moment, available, only_Update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2023-11-20T13:00:00Z', null, true, false);
